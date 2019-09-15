@@ -4,7 +4,9 @@ import de.inetsoftware.jwebassembly.api.annotation.Export;
 public class Lib {
 
     @Export
-    public static int add(int int1, int int2){
-        return int1+int2;
+    public static int hfc(int a, int b){
+        if(b==0)return a;
+
+        else return hfc(b,a%b);
     }
 }

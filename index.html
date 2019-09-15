@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+function loadWebAssembly(fileName) {
+  return fetch(fileName)
+    .then(response => response.arrayBuffer())
+    .then(buffer => WebAssembly.compile(buffer))
+    .then(module => {return new WebAssembly.Instance(module) });
+};
+
+loadWebAssembly('./build/distributions/jwebassembly-1.0-SNAPSHOT.wasm')
+  .then(instance => {
+    let lib = instance.exports.hfc;
+    console.log(lib(3+2))
+  });
+
+</script>
+</body>
+</html>
